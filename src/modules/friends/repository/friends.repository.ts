@@ -1,7 +1,4 @@
 import {CreateFriendDTO, FriendDTO} from "@modules/friends/dto";
+import {BaseRepository} from "@modules/shared/repository";
 
-export interface FriendsRepository {
-    create(friend: CreateFriendDTO): Promise<FriendDTO>;
-    getAll(): Promise<FriendDTO[]>;
-    delete(id: string): Promise<void>;
-}
+export interface FriendsRepository extends BaseRepository<CreateFriendDTO, FriendDTO> {}
