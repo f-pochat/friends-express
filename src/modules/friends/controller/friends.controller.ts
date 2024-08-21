@@ -1,14 +1,14 @@
 import { Request, Response, Router } from 'express'
 import HttpStatus from "http-status";
 import {db} from "@utils";
-import {FriendsServiceImpl} from "@modules/friends/service";
+import {AddressServiceImpl} from "@modules/friends/service";
 import {FriendsRepositoryImpl} from "@modules/friends/repository";
 import {BodyValidation} from "@utils/validation";
 import {CreateFriendDTO} from "@modules/friends/dto";
 
 export const friendsRouter = Router()
 
-const service = new FriendsServiceImpl(new FriendsRepositoryImpl(db))
+const service = new AddressServiceImpl(new FriendsRepositoryImpl(db))
 
 friendsRouter.get('/', async (req: Request, res: Response) => {
     const friends = await service.getFriends();
