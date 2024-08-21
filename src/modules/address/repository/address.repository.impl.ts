@@ -1,7 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { CreateAddressDto, AddressDto } from '../dto';
+import {AddressRepository} from "@modules/address/repository/address.repository";
 
-export class AddressRepositoryImpl {
+export class AddressRepositoryImpl implements AddressRepository{
     constructor(private readonly db: PrismaClient) {}
 
     async create(data: CreateAddressDto): Promise<AddressDto> {

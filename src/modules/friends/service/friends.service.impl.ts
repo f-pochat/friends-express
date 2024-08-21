@@ -2,7 +2,7 @@ import {FriendsService} from "@modules/friends/service/friends.service";
 import {FriendsRepository} from "@modules/friends/repository/friends.repository";
 import {CreateFriendDTO, FriendDTO} from "@modules/friends/dto";
 
-export class AddressServiceImpl implements FriendsService {
+export class FriendsServiceImpl implements FriendsService {
     constructor(private readonly repository: FriendsRepository) {
     }
     createFriend(friend: CreateFriendDTO): Promise<FriendDTO> {
