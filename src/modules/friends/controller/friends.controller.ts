@@ -10,10 +10,10 @@ export const friendsRouter = Router()
 
 const service = new FriendsServiceImpl(new FriendsRepositoryImpl(db))
 
-friendsRouter.get('/', async (res: Response) => {
+friendsRouter.get('/', async (req: Request, res: Response) => {
     const friends = await service.getFriends();
-    return res.status(HttpStatus.OK).json(friends)
-})
+    return res.status(HttpStatus.OK).json(friends);
+});
 
 friendsRouter.post('/', BodyValidation(CreateFriendDTO), async (req: Request, res: Response) => {
     const data = req.body
