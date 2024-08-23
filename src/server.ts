@@ -1,4 +1,5 @@
 import express from 'express'
+import 'reflect-metadata';
 import cors from 'cors'
 
 import {Constants, ErrorHandling, Logger} from '@utils'

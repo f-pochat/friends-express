@@ -1,4 +1,6 @@
-import {IsEmail, IsNotEmpty, IsOptional, IsString} from 'class-validator'
+import {IsEmail, IsNotEmpty, IsOptional, IsString, ValidateNested} from 'class-validator'
+import {Type} from 'class-transformer'
+import {CreateAddressDTO} from '@modules/address/dto'
 
 export class CreateFriendDTO {
     @IsString()
@@ -12,6 +14,12 @@ export class CreateFriendDTO {
     @IsString()
     @IsOptional()
     phone?:string
+
+    @ValidateNested({ each: true })
+    @Type(() => CreateAddressDTO)
+    @IsOptional()
+    addresses?: CreateAddressDTO[];
+
 }
 
 export class FriendDTO {

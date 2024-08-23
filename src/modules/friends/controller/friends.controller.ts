@@ -29,3 +29,10 @@ friendsRouter.delete('/:id', async (req: Request, res: Response) => {
 
     return res.status(HttpStatus.OK).json(friends)
 })
+
+friendsRouter.get('/:id/addresses', async (req: Request, res: Response) => {
+    const {id} = req.params
+    const addresses = await service.getAddressesByFriendId(id);
+
+    return res.status(HttpStatus.OK).json(addresses)
+})
