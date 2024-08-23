@@ -8,10 +8,22 @@ datasource db {
 }
 
 model Friend {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
-  email     String   @unique
-  phone     String?  @unique
+  email     String    @unique
+  phone     String?   @unique
+  addresses Address[] @relation("FriendAddresses")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Address {
+  id        String   @id @default(uuid())
+  street    String
+  city      String
+  state     String
+  friend    Friend   @relation("FriendAddresses", fields: [friendId], references: [id])
+  friendId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
