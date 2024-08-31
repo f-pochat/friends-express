@@ -5,8 +5,8 @@ import {CreateFriendDTO, FriendDTO} from "@modules/friends/dto";
 export class FriendsServiceImpl implements FriendsService {
     constructor(private readonly repository: FriendsRepository) {
     }
-    createFriend(friend: CreateFriendDTO): Promise<FriendDTO> {
-        return this.repository.create(friend)
+    createFriend(data: CreateFriendDTO): Promise<FriendDTO> {
+        return this.repository.create(data)
     }
 
     deleteFriend(id: string): Promise<void> {

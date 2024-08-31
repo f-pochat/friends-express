@@ -7,13 +7,27 @@ export class FriendsRepositoryImpl implements FriendsRepository {
 
     async create(data: CreateFriendDTO): Promise<FriendDTO> {
         const friend = await this.db.friend.create({
-            data
-        })
+            data: {
+                name: data.name,
+                email: data.email,
+                phone: data.phone,
+                Address: {
+                    create: data.addresses
+                }
+            },
+            include: {
+                Address: true
+            }
+        });
         return new FriendDTO(friend)
     }
 
     async getAll(): Promise<FriendDTO[]> {
-        const friends = await this.db.friend.findMany();
+        const friends = await this.db.friend.findMany({
+            include: {
+                Address: true
+            }
+        });
         return friends.map(friend => new FriendDTO(friend))
     }
 
